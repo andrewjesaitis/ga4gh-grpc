@@ -16,12 +16,7 @@ class VariantService(variant_service_pb2.BetaVariantServiceServicer):
   def SearchVariants(self, request, context):
     for idx, rec in enumerate(datamodel.variant.getPysamVariants(
         request.reference_name, '1', request.start, request.end)):
-      variant = variants_pb2.Variant(
-        id="{contig}:{pos} {alleles}".format(
-          contig=rec.contig, 
-          pos=rec.pos, 
-          alleles='/'.join(rec.alleles))
-      )
+      variant = datamodel.variant.convertVariant(rec, None)
       if idx > 5: break
       yield variant
 

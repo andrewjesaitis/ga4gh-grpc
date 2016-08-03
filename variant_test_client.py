@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 from grpc.beta import implementations
+import google.protobuf.json_format as json_format
 
 import ga4gh.variant_service_pb2 as variant_service_pb2
 
@@ -20,7 +21,7 @@ def chr1_variants(channel):
 
   print("Searching for Variants on Chromosome 1...")
   for variant in stub.SearchVariants(req, _TIMEOUT_SECONDS):
-    print("Variant: {}".format(variant.id))
+    print(json_format.MessageToJson(variant))
 
 
 def run():
