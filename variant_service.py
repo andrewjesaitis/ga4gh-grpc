@@ -3,6 +3,8 @@ import time
 import ga4gh.variant_service_pb2 as variant_service_pb2
 import ga4gh.variants_pb2 as variants_pb2
 
+import datamodel.variant
+
 class VariantService(variant_service_pb2.BetaVariantServiceServicer):
 
   def SearchVariantSets(self, request, context):
@@ -12,10 +14,15 @@ class VariantService(variant_service_pb2.BetaVariantServiceServicer):
     return variant_service_pb2.SearchCallSetsResponse()
 
   def SearchVariants(self, request, context):
-    for idx in range(5):
+    for idx, rec in enumerate(datamodel.variant.getPysamVariants(
+        request.reference_name, '1', request.start, request.end)):
       variant = variants_pb2.Variant(
-        id=str(idx)
+        id="{contig}:{pos} {alleles}".format(
+          contig=rec.contig, 
+          pos=rec.pos, 
+          alleles='/'.join(rec.alleles))
       )
+      if idx > 5: break
       yield variant
 
   def GetCallSet(self, request, context):
