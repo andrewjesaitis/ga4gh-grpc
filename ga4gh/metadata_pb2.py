@@ -266,8 +266,7 @@ _sym_db.RegisterMessage(Program)
 
 _DATASET_INFOENTRY.has_options = True
 _DATASET_INFOENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality

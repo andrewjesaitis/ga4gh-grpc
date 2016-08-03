@@ -448,12 +448,135 @@ ListReferenceBasesResponse = _reflection.GeneratedProtocolMessageType('ListRefer
 _sym_db.RegisterMessage(ListReferenceBasesResponse)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class ReferenceServiceStub(object):
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.SearchReferenceSets = channel.unary_unary(
+        '/ga4gh.ReferenceService/SearchReferenceSets',
+        request_serializer=SearchReferenceSetsRequest.SerializeToString,
+        response_deserializer=SearchReferenceSetsResponse.FromString,
+        )
+    self.GetReferenceSet = channel.unary_unary(
+        '/ga4gh.ReferenceService/GetReferenceSet',
+        request_serializer=GetReferenceSetRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_references__pb2.ReferenceSet.FromString,
+        )
+    self.SearchReferences = channel.unary_unary(
+        '/ga4gh.ReferenceService/SearchReferences',
+        request_serializer=SearchReferencesRequest.SerializeToString,
+        response_deserializer=SearchReferencesResponse.FromString,
+        )
+    self.GetReference = channel.unary_unary(
+        '/ga4gh.ReferenceService/GetReference',
+        request_serializer=GetReferenceRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_references__pb2.Reference.FromString,
+        )
+    self.ListReferenceBases = channel.unary_unary(
+        '/ga4gh.ReferenceService/ListReferenceBases',
+        request_serializer=ListReferenceBasesRequest.SerializeToString,
+        response_deserializer=ListReferenceBasesResponse.FromString,
+        )
+
+
+class ReferenceServiceServicer(object):
+
+  def SearchReferenceSets(self, request, context):
+    """Gets a list of `ReferenceSet` matching the search criteria.
+
+    `POST /referencesets/search` must accept a JSON version of
+    `SearchReferenceSetsRequest` as the post body and will return a JSON
+    version of `SearchReferenceSetsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetReferenceSet(self, request, context):
+    """Gets a `ReferenceSet` by ID.
+
+    `GET /referencesets/{reference_set_id}` will return a JSON version of
+    `ReferenceSet`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SearchReferences(self, request, context):
+    """Gets a list of `Reference` matching the search criteria.
+
+    `POST /references/search` must accept a JSON version of
+    `SearchReferencesRequest` as the post body and will return a JSON
+    version of `SearchReferencesResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetReference(self, request, context):
+    """Gets a `Reference` by ID.
+
+    `GET /references/{reference_id}` will return a JSON version of
+    `Reference`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ListReferenceBases(self, request, context):
+    """Lists `Reference` bases by ID and optional range.
+
+    `GET /references/{id}/bases` will return a JSON version of
+    `ListReferenceBasesResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_ReferenceServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'SearchReferenceSets': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchReferenceSets,
+          request_deserializer=SearchReferenceSetsRequest.FromString,
+          response_serializer=SearchReferenceSetsResponse.SerializeToString,
+      ),
+      'GetReferenceSet': grpc.unary_unary_rpc_method_handler(
+          servicer.GetReferenceSet,
+          request_deserializer=GetReferenceSetRequest.FromString,
+          response_serializer=ga4gh_dot_references__pb2.ReferenceSet.SerializeToString,
+      ),
+      'SearchReferences': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchReferences,
+          request_deserializer=SearchReferencesRequest.FromString,
+          response_serializer=SearchReferencesResponse.SerializeToString,
+      ),
+      'GetReference': grpc.unary_unary_rpc_method_handler(
+          servicer.GetReference,
+          request_deserializer=GetReferenceRequest.FromString,
+          response_serializer=ga4gh_dot_references__pb2.Reference.SerializeToString,
+      ),
+      'ListReferenceBases': grpc.unary_unary_rpc_method_handler(
+          servicer.ListReferenceBases,
+          request_deserializer=ListReferenceBasesRequest.FromString,
+          response_serializer=ListReferenceBasesResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'ga4gh.ReferenceService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaReferenceServiceServicer(object):
   def SearchReferenceSets(self, request, context):
@@ -494,8 +617,9 @@ class BetaReferenceServiceServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaReferenceServiceStub(object):
-  def SearchReferenceSets(self, request, timeout):
+  def SearchReferenceSets(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `ReferenceSet` matching the search criteria.
 
     `POST /referencesets/search` must accept a JSON version of
@@ -504,7 +628,7 @@ class BetaReferenceServiceStub(object):
     """
     raise NotImplementedError()
   SearchReferenceSets.future = None
-  def GetReferenceSet(self, request, timeout):
+  def GetReferenceSet(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `ReferenceSet` by ID.
 
     `GET /referencesets/{reference_set_id}` will return a JSON version of
@@ -512,7 +636,7 @@ class BetaReferenceServiceStub(object):
     """
     raise NotImplementedError()
   GetReferenceSet.future = None
-  def SearchReferences(self, request, timeout):
+  def SearchReferences(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `Reference` matching the search criteria.
 
     `POST /references/search` must accept a JSON version of
@@ -521,7 +645,7 @@ class BetaReferenceServiceStub(object):
     """
     raise NotImplementedError()
   SearchReferences.future = None
-  def GetReference(self, request, timeout):
+  def GetReference(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `Reference` by ID.
 
     `GET /references/{reference_id}` will return a JSON version of
@@ -529,7 +653,7 @@ class BetaReferenceServiceStub(object):
     """
     raise NotImplementedError()
   GetReference.future = None
-  def ListReferenceBases(self, request, timeout):
+  def ListReferenceBases(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists `Reference` bases by ID and optional range.
 
     `GET /references/{id}/bases` will return a JSON version of
@@ -538,30 +662,21 @@ class BetaReferenceServiceStub(object):
     raise NotImplementedError()
   ListReferenceBases.future = None
 
+
 def beta_create_ReferenceService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.references_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.references_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
   request_deserializers = {
-    ('ga4gh.ReferenceService', 'GetReference'): ga4gh.reference_service_pb2.GetReferenceRequest.FromString,
-    ('ga4gh.ReferenceService', 'GetReferenceSet'): ga4gh.reference_service_pb2.GetReferenceSetRequest.FromString,
-    ('ga4gh.ReferenceService', 'ListReferenceBases'): ga4gh.reference_service_pb2.ListReferenceBasesRequest.FromString,
-    ('ga4gh.ReferenceService', 'SearchReferenceSets'): ga4gh.reference_service_pb2.SearchReferenceSetsRequest.FromString,
-    ('ga4gh.ReferenceService', 'SearchReferences'): ga4gh.reference_service_pb2.SearchReferencesRequest.FromString,
+    ('ga4gh.ReferenceService', 'GetReference'): GetReferenceRequest.FromString,
+    ('ga4gh.ReferenceService', 'GetReferenceSet'): GetReferenceSetRequest.FromString,
+    ('ga4gh.ReferenceService', 'ListReferenceBases'): ListReferenceBasesRequest.FromString,
+    ('ga4gh.ReferenceService', 'SearchReferenceSets'): SearchReferenceSetsRequest.FromString,
+    ('ga4gh.ReferenceService', 'SearchReferences'): SearchReferencesRequest.FromString,
   }
   response_serializers = {
-    ('ga4gh.ReferenceService', 'GetReference'): ga4gh.references_pb2.Reference.SerializeToString,
-    ('ga4gh.ReferenceService', 'GetReferenceSet'): ga4gh.references_pb2.ReferenceSet.SerializeToString,
-    ('ga4gh.ReferenceService', 'ListReferenceBases'): ga4gh.reference_service_pb2.ListReferenceBasesResponse.SerializeToString,
-    ('ga4gh.ReferenceService', 'SearchReferenceSets'): ga4gh.reference_service_pb2.SearchReferenceSetsResponse.SerializeToString,
-    ('ga4gh.ReferenceService', 'SearchReferences'): ga4gh.reference_service_pb2.SearchReferencesResponse.SerializeToString,
+    ('ga4gh.ReferenceService', 'GetReference'): ga4gh_dot_references__pb2.Reference.SerializeToString,
+    ('ga4gh.ReferenceService', 'GetReferenceSet'): ga4gh_dot_references__pb2.ReferenceSet.SerializeToString,
+    ('ga4gh.ReferenceService', 'ListReferenceBases'): ListReferenceBasesResponse.SerializeToString,
+    ('ga4gh.ReferenceService', 'SearchReferenceSets'): SearchReferenceSetsResponse.SerializeToString,
+    ('ga4gh.ReferenceService', 'SearchReferences'): SearchReferencesResponse.SerializeToString,
   }
   method_implementations = {
     ('ga4gh.ReferenceService', 'GetReference'): face_utilities.unary_unary_inline(servicer.GetReference),
@@ -573,30 +688,21 @@ def beta_create_ReferenceService_server(servicer, pool=None, pool_size=None, def
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_ReferenceService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.references_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.references_pb2
-  import ga4gh.reference_service_pb2
-  import ga4gh.reference_service_pb2
   request_serializers = {
-    ('ga4gh.ReferenceService', 'GetReference'): ga4gh.reference_service_pb2.GetReferenceRequest.SerializeToString,
-    ('ga4gh.ReferenceService', 'GetReferenceSet'): ga4gh.reference_service_pb2.GetReferenceSetRequest.SerializeToString,
-    ('ga4gh.ReferenceService', 'ListReferenceBases'): ga4gh.reference_service_pb2.ListReferenceBasesRequest.SerializeToString,
-    ('ga4gh.ReferenceService', 'SearchReferenceSets'): ga4gh.reference_service_pb2.SearchReferenceSetsRequest.SerializeToString,
-    ('ga4gh.ReferenceService', 'SearchReferences'): ga4gh.reference_service_pb2.SearchReferencesRequest.SerializeToString,
+    ('ga4gh.ReferenceService', 'GetReference'): GetReferenceRequest.SerializeToString,
+    ('ga4gh.ReferenceService', 'GetReferenceSet'): GetReferenceSetRequest.SerializeToString,
+    ('ga4gh.ReferenceService', 'ListReferenceBases'): ListReferenceBasesRequest.SerializeToString,
+    ('ga4gh.ReferenceService', 'SearchReferenceSets'): SearchReferenceSetsRequest.SerializeToString,
+    ('ga4gh.ReferenceService', 'SearchReferences'): SearchReferencesRequest.SerializeToString,
   }
   response_deserializers = {
-    ('ga4gh.ReferenceService', 'GetReference'): ga4gh.references_pb2.Reference.FromString,
-    ('ga4gh.ReferenceService', 'GetReferenceSet'): ga4gh.references_pb2.ReferenceSet.FromString,
-    ('ga4gh.ReferenceService', 'ListReferenceBases'): ga4gh.reference_service_pb2.ListReferenceBasesResponse.FromString,
-    ('ga4gh.ReferenceService', 'SearchReferenceSets'): ga4gh.reference_service_pb2.SearchReferenceSetsResponse.FromString,
-    ('ga4gh.ReferenceService', 'SearchReferences'): ga4gh.reference_service_pb2.SearchReferencesResponse.FromString,
+    ('ga4gh.ReferenceService', 'GetReference'): ga4gh_dot_references__pb2.Reference.FromString,
+    ('ga4gh.ReferenceService', 'GetReferenceSet'): ga4gh_dot_references__pb2.ReferenceSet.FromString,
+    ('ga4gh.ReferenceService', 'ListReferenceBases'): ListReferenceBasesResponse.FromString,
+    ('ga4gh.ReferenceService', 'SearchReferenceSets'): SearchReferenceSetsResponse.FromString,
+    ('ga4gh.ReferenceService', 'SearchReferences'): SearchReferencesResponse.FromString,
   }
   cardinalities = {
     'GetReference': cardinality.Cardinality.UNARY_UNARY,

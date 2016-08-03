@@ -85,7 +85,7 @@ _REFERENCE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='source_divergence', full_name='ga4gh.Reference.source_divergence', index=7,
       number=8, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -217,8 +217,7 @@ ReferenceSet = _reflection.GeneratedProtocolMessageType('ReferenceSet', (_messag
 _sym_db.RegisterMessage(ReferenceSet)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality

@@ -161,12 +161,74 @@ GetDatasetRequest = _reflection.GeneratedProtocolMessageType('GetDatasetRequest'
 _sym_db.RegisterMessage(GetDatasetRequest)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class MetadataServiceStub(object):
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.SearchDatasets = channel.unary_unary(
+        '/ga4gh.MetadataService/SearchDatasets',
+        request_serializer=SearchDatasetsRequest.SerializeToString,
+        response_deserializer=SearchDatasetsResponse.FromString,
+        )
+    self.GetDataset = channel.unary_unary(
+        '/ga4gh.MetadataService/GetDataset',
+        request_serializer=GetDatasetRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_metadata__pb2.Dataset.FromString,
+        )
+
+
+class MetadataServiceServicer(object):
+
+  def SearchDatasets(self, request, context):
+    """Gets a list of `Dataset` matching the search criteria.
+
+    `POST /datasets/search` must accept a JSON version of
+    `SearchDatasetsRequest` as the post body and will return a JSON
+    version of `SearchDatasetsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetDataset(self, request, context):
+    """Gets a `Dataset` by ID.
+
+    `GET /datasets/{dataset_id}` will return a JSON version of
+    `Dataset`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_MetadataServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'SearchDatasets': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchDatasets,
+          request_deserializer=SearchDatasetsRequest.FromString,
+          response_serializer=SearchDatasetsResponse.SerializeToString,
+      ),
+      'GetDataset': grpc.unary_unary_rpc_method_handler(
+          servicer.GetDataset,
+          request_deserializer=GetDatasetRequest.FromString,
+          response_serializer=ga4gh_dot_metadata__pb2.Dataset.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'ga4gh.MetadataService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaMetadataServiceServicer(object):
   def SearchDatasets(self, request, context):
@@ -185,8 +247,9 @@ class BetaMetadataServiceServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaMetadataServiceStub(object):
-  def SearchDatasets(self, request, timeout):
+  def SearchDatasets(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `Dataset` matching the search criteria.
 
     `POST /datasets/search` must accept a JSON version of
@@ -195,7 +258,7 @@ class BetaMetadataServiceStub(object):
     """
     raise NotImplementedError()
   SearchDatasets.future = None
-  def GetDataset(self, request, timeout):
+  def GetDataset(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `Dataset` by ID.
 
     `GET /datasets/{dataset_id}` will return a JSON version of
@@ -204,18 +267,15 @@ class BetaMetadataServiceStub(object):
     raise NotImplementedError()
   GetDataset.future = None
 
+
 def beta_create_MetadataService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import ga4gh.metadata_service_pb2
-  import ga4gh.metadata_service_pb2
-  import ga4gh.metadata_service_pb2
-  import ga4gh.metadata_pb2
   request_deserializers = {
-    ('ga4gh.MetadataService', 'GetDataset'): ga4gh.metadata_service_pb2.GetDatasetRequest.FromString,
-    ('ga4gh.MetadataService', 'SearchDatasets'): ga4gh.metadata_service_pb2.SearchDatasetsRequest.FromString,
+    ('ga4gh.MetadataService', 'GetDataset'): GetDatasetRequest.FromString,
+    ('ga4gh.MetadataService', 'SearchDatasets'): SearchDatasetsRequest.FromString,
   }
   response_serializers = {
-    ('ga4gh.MetadataService', 'GetDataset'): ga4gh.metadata_pb2.Dataset.SerializeToString,
-    ('ga4gh.MetadataService', 'SearchDatasets'): ga4gh.metadata_service_pb2.SearchDatasetsResponse.SerializeToString,
+    ('ga4gh.MetadataService', 'GetDataset'): ga4gh_dot_metadata__pb2.Dataset.SerializeToString,
+    ('ga4gh.MetadataService', 'SearchDatasets'): SearchDatasetsResponse.SerializeToString,
   }
   method_implementations = {
     ('ga4gh.MetadataService', 'GetDataset'): face_utilities.unary_unary_inline(servicer.GetDataset),
@@ -224,18 +284,15 @@ def beta_create_MetadataService_server(servicer, pool=None, pool_size=None, defa
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_MetadataService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import ga4gh.metadata_service_pb2
-  import ga4gh.metadata_service_pb2
-  import ga4gh.metadata_service_pb2
-  import ga4gh.metadata_pb2
   request_serializers = {
-    ('ga4gh.MetadataService', 'GetDataset'): ga4gh.metadata_service_pb2.GetDatasetRequest.SerializeToString,
-    ('ga4gh.MetadataService', 'SearchDatasets'): ga4gh.metadata_service_pb2.SearchDatasetsRequest.SerializeToString,
+    ('ga4gh.MetadataService', 'GetDataset'): GetDatasetRequest.SerializeToString,
+    ('ga4gh.MetadataService', 'SearchDatasets'): SearchDatasetsRequest.SerializeToString,
   }
   response_deserializers = {
-    ('ga4gh.MetadataService', 'GetDataset'): ga4gh.metadata_pb2.Dataset.FromString,
-    ('ga4gh.MetadataService', 'SearchDatasets'): ga4gh.metadata_service_pb2.SearchDatasetsResponse.FromString,
+    ('ga4gh.MetadataService', 'GetDataset'): ga4gh_dot_metadata__pb2.Dataset.FromString,
+    ('ga4gh.MetadataService', 'SearchDatasets'): SearchDatasetsResponse.FromString,
   }
   cardinalities = {
     'GetDataset': cardinality.Cardinality.UNARY_UNARY,

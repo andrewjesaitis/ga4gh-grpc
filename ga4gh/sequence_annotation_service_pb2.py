@@ -356,12 +356,113 @@ GetFeatureRequest = _reflection.GeneratedProtocolMessageType('GetFeatureRequest'
 _sym_db.RegisterMessage(GetFeatureRequest)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class SequenceAnnotationServiceStub(object):
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.SearchFeatureSets = channel.unary_unary(
+        '/ga4gh.SequenceAnnotationService/SearchFeatureSets',
+        request_serializer=SearchFeatureSetsRequest.SerializeToString,
+        response_deserializer=SearchFeatureSetsResponse.FromString,
+        )
+    self.GetFeatureSet = channel.unary_unary(
+        '/ga4gh.SequenceAnnotationService/GetFeatureSet',
+        request_serializer=GetFeatureSetRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_sequence__annotations__pb2.FeatureSet.FromString,
+        )
+    self.SearchFeatures = channel.unary_unary(
+        '/ga4gh.SequenceAnnotationService/SearchFeatures',
+        request_serializer=SearchFeaturesRequest.SerializeToString,
+        response_deserializer=SearchFeaturesResponse.FromString,
+        )
+    self.GetFeature = channel.unary_unary(
+        '/ga4gh.SequenceAnnotationService/GetFeature',
+        request_serializer=GetFeatureRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_sequence__annotations__pb2.Feature.FromString,
+        )
+
+
+class SequenceAnnotationServiceServicer(object):
+
+  def SearchFeatureSets(self, request, context):
+    """Gets a list of `FeatureSet` matching the search criteria.
+
+    `POST /featuresets/search` must accept a JSON version of
+    `SearchFeatureSetsRequest` as the post body and will return a JSON version
+    of `SearchFeatureSetsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetFeatureSet(self, request, context):
+    """Gets a `FeatureSet` by ID.
+
+    `GET /featuresets/{id}` will return a JSON version of `FeatureSet`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SearchFeatures(self, request, context):
+    """Gets a list of `Feature` matching the search criteria.
+
+    `POST /features/search` must accept a JSON version of
+    `SearchFeaturesRequest` as the post body and will return a JSON version of
+    `SearchFeaturesResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetFeature(self, request, context):
+    """Gets a `org.ga4gh.models.Feature` by ID.
+
+    `GET /features/{id}` will return a JSON version of `Feature`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_SequenceAnnotationServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'SearchFeatureSets': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchFeatureSets,
+          request_deserializer=SearchFeatureSetsRequest.FromString,
+          response_serializer=SearchFeatureSetsResponse.SerializeToString,
+      ),
+      'GetFeatureSet': grpc.unary_unary_rpc_method_handler(
+          servicer.GetFeatureSet,
+          request_deserializer=GetFeatureSetRequest.FromString,
+          response_serializer=ga4gh_dot_sequence__annotations__pb2.FeatureSet.SerializeToString,
+      ),
+      'SearchFeatures': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchFeatures,
+          request_deserializer=SearchFeaturesRequest.FromString,
+          response_serializer=SearchFeaturesResponse.SerializeToString,
+      ),
+      'GetFeature': grpc.unary_unary_rpc_method_handler(
+          servicer.GetFeature,
+          request_deserializer=GetFeatureRequest.FromString,
+          response_serializer=ga4gh_dot_sequence__annotations__pb2.Feature.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'ga4gh.SequenceAnnotationService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaSequenceAnnotationServiceServicer(object):
   def SearchFeatureSets(self, request, context):
@@ -393,8 +494,9 @@ class BetaSequenceAnnotationServiceServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaSequenceAnnotationServiceStub(object):
-  def SearchFeatureSets(self, request, timeout):
+  def SearchFeatureSets(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `FeatureSet` matching the search criteria.
 
     `POST /featuresets/search` must accept a JSON version of
@@ -403,14 +505,14 @@ class BetaSequenceAnnotationServiceStub(object):
     """
     raise NotImplementedError()
   SearchFeatureSets.future = None
-  def GetFeatureSet(self, request, timeout):
+  def GetFeatureSet(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `FeatureSet` by ID.
 
     `GET /featuresets/{id}` will return a JSON version of `FeatureSet`.
     """
     raise NotImplementedError()
   GetFeatureSet.future = None
-  def SearchFeatures(self, request, timeout):
+  def SearchFeatures(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `Feature` matching the search criteria.
 
     `POST /features/search` must accept a JSON version of
@@ -419,7 +521,7 @@ class BetaSequenceAnnotationServiceStub(object):
     """
     raise NotImplementedError()
   SearchFeatures.future = None
-  def GetFeature(self, request, timeout):
+  def GetFeature(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `org.ga4gh.models.Feature` by ID.
 
     `GET /features/{id}` will return a JSON version of `Feature`.
@@ -427,26 +529,19 @@ class BetaSequenceAnnotationServiceStub(object):
     raise NotImplementedError()
   GetFeature.future = None
 
+
 def beta_create_SequenceAnnotationService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotations_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotations_pb2
   request_deserializers = {
-    ('ga4gh.SequenceAnnotationService', 'GetFeature'): ga4gh.sequence_annotation_service_pb2.GetFeatureRequest.FromString,
-    ('ga4gh.SequenceAnnotationService', 'GetFeatureSet'): ga4gh.sequence_annotation_service_pb2.GetFeatureSetRequest.FromString,
-    ('ga4gh.SequenceAnnotationService', 'SearchFeatureSets'): ga4gh.sequence_annotation_service_pb2.SearchFeatureSetsRequest.FromString,
-    ('ga4gh.SequenceAnnotationService', 'SearchFeatures'): ga4gh.sequence_annotation_service_pb2.SearchFeaturesRequest.FromString,
+    ('ga4gh.SequenceAnnotationService', 'GetFeature'): GetFeatureRequest.FromString,
+    ('ga4gh.SequenceAnnotationService', 'GetFeatureSet'): GetFeatureSetRequest.FromString,
+    ('ga4gh.SequenceAnnotationService', 'SearchFeatureSets'): SearchFeatureSetsRequest.FromString,
+    ('ga4gh.SequenceAnnotationService', 'SearchFeatures'): SearchFeaturesRequest.FromString,
   }
   response_serializers = {
-    ('ga4gh.SequenceAnnotationService', 'GetFeature'): ga4gh.sequence_annotations_pb2.Feature.SerializeToString,
-    ('ga4gh.SequenceAnnotationService', 'GetFeatureSet'): ga4gh.sequence_annotations_pb2.FeatureSet.SerializeToString,
-    ('ga4gh.SequenceAnnotationService', 'SearchFeatureSets'): ga4gh.sequence_annotation_service_pb2.SearchFeatureSetsResponse.SerializeToString,
-    ('ga4gh.SequenceAnnotationService', 'SearchFeatures'): ga4gh.sequence_annotation_service_pb2.SearchFeaturesResponse.SerializeToString,
+    ('ga4gh.SequenceAnnotationService', 'GetFeature'): ga4gh_dot_sequence__annotations__pb2.Feature.SerializeToString,
+    ('ga4gh.SequenceAnnotationService', 'GetFeatureSet'): ga4gh_dot_sequence__annotations__pb2.FeatureSet.SerializeToString,
+    ('ga4gh.SequenceAnnotationService', 'SearchFeatureSets'): SearchFeatureSetsResponse.SerializeToString,
+    ('ga4gh.SequenceAnnotationService', 'SearchFeatures'): SearchFeaturesResponse.SerializeToString,
   }
   method_implementations = {
     ('ga4gh.SequenceAnnotationService', 'GetFeature'): face_utilities.unary_unary_inline(servicer.GetFeature),
@@ -457,26 +552,19 @@ def beta_create_SequenceAnnotationService_server(servicer, pool=None, pool_size=
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_SequenceAnnotationService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotations_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotation_service_pb2
-  import ga4gh.sequence_annotations_pb2
   request_serializers = {
-    ('ga4gh.SequenceAnnotationService', 'GetFeature'): ga4gh.sequence_annotation_service_pb2.GetFeatureRequest.SerializeToString,
-    ('ga4gh.SequenceAnnotationService', 'GetFeatureSet'): ga4gh.sequence_annotation_service_pb2.GetFeatureSetRequest.SerializeToString,
-    ('ga4gh.SequenceAnnotationService', 'SearchFeatureSets'): ga4gh.sequence_annotation_service_pb2.SearchFeatureSetsRequest.SerializeToString,
-    ('ga4gh.SequenceAnnotationService', 'SearchFeatures'): ga4gh.sequence_annotation_service_pb2.SearchFeaturesRequest.SerializeToString,
+    ('ga4gh.SequenceAnnotationService', 'GetFeature'): GetFeatureRequest.SerializeToString,
+    ('ga4gh.SequenceAnnotationService', 'GetFeatureSet'): GetFeatureSetRequest.SerializeToString,
+    ('ga4gh.SequenceAnnotationService', 'SearchFeatureSets'): SearchFeatureSetsRequest.SerializeToString,
+    ('ga4gh.SequenceAnnotationService', 'SearchFeatures'): SearchFeaturesRequest.SerializeToString,
   }
   response_deserializers = {
-    ('ga4gh.SequenceAnnotationService', 'GetFeature'): ga4gh.sequence_annotations_pb2.Feature.FromString,
-    ('ga4gh.SequenceAnnotationService', 'GetFeatureSet'): ga4gh.sequence_annotations_pb2.FeatureSet.FromString,
-    ('ga4gh.SequenceAnnotationService', 'SearchFeatureSets'): ga4gh.sequence_annotation_service_pb2.SearchFeatureSetsResponse.FromString,
-    ('ga4gh.SequenceAnnotationService', 'SearchFeatures'): ga4gh.sequence_annotation_service_pb2.SearchFeaturesResponse.FromString,
+    ('ga4gh.SequenceAnnotationService', 'GetFeature'): ga4gh_dot_sequence__annotations__pb2.Feature.FromString,
+    ('ga4gh.SequenceAnnotationService', 'GetFeatureSet'): ga4gh_dot_sequence__annotations__pb2.FeatureSet.FromString,
+    ('ga4gh.SequenceAnnotationService', 'SearchFeatureSets'): SearchFeatureSetsResponse.FromString,
+    ('ga4gh.SequenceAnnotationService', 'SearchFeatures'): SearchFeaturesResponse.FromString,
   }
   cardinalities = {
     'GetFeature': cardinality.Cardinality.UNARY_UNARY,

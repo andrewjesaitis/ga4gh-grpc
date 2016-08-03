@@ -322,8 +322,7 @@ CigarUnit = _reflection.GeneratedProtocolMessageType('CigarUnit', (_message.Mess
 _sym_db.RegisterMessage(CigarUnit)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality

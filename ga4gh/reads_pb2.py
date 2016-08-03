@@ -588,8 +588,7 @@ _READGROUP_INFOENTRY.has_options = True
 _READGROUP_INFOENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 _READALIGNMENT_INFOENTRY.has_options = True
 _READALIGNMENT_INFOENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality

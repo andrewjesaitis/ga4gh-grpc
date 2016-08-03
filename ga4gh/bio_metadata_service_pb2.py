@@ -328,12 +328,108 @@ SearchBioSamplesResponse = _reflection.GeneratedProtocolMessageType('SearchBioSa
 _sym_db.RegisterMessage(SearchBioSamplesResponse)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class BioMetadataServiceStub(object):
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.SearchIndividuals = channel.unary_unary(
+        '/ga4gh.BioMetadataService/SearchIndividuals',
+        request_serializer=SearchIndividualsRequest.SerializeToString,
+        response_deserializer=SearchIndividualsResponse.FromString,
+        )
+    self.SearchBioSamples = channel.unary_unary(
+        '/ga4gh.BioMetadataService/SearchBioSamples',
+        request_serializer=SearchBioSamplesRequest.SerializeToString,
+        response_deserializer=SearchBioSamplesResponse.FromString,
+        )
+    self.GetIndividual = channel.unary_unary(
+        '/ga4gh.BioMetadataService/GetIndividual',
+        request_serializer=GetIndividualRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_bio__metadata__pb2.Individual.FromString,
+        )
+    self.GetBioSample = channel.unary_unary(
+        '/ga4gh.BioMetadataService/GetBioSample',
+        request_serializer=GetBioSampleRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_bio__metadata__pb2.BioSample.FromString,
+        )
+
+
+class BioMetadataServiceServicer(object):
+
+  def SearchIndividuals(self, request, context):
+    """Gets a list of Individuals accessible through the API.
+    `POST /individuals/search` must accept a JSON version of
+    `SearchIndividualsRequest` as the post body and will return a JSON version
+    of `SearchIndividualsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SearchBioSamples(self, request, context):
+    """`POST /biosamples/search` must accept a JSON version of
+    `SearchBioSamplesRequest` as the post body and will return a JSON version
+    of `SearchBioSamplesResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetIndividual(self, request, context):
+    """Gets an `Individual` by ID.
+    `GET /individuals/{id}` will return a JSON version of `Individual`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetBioSample(self, request, context):
+    """Gets a `BioSample` by ID.
+    `GET /biosamples/{id}` will return a JSON version of `BioSample`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_BioMetadataServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'SearchIndividuals': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchIndividuals,
+          request_deserializer=SearchIndividualsRequest.FromString,
+          response_serializer=SearchIndividualsResponse.SerializeToString,
+      ),
+      'SearchBioSamples': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchBioSamples,
+          request_deserializer=SearchBioSamplesRequest.FromString,
+          response_serializer=SearchBioSamplesResponse.SerializeToString,
+      ),
+      'GetIndividual': grpc.unary_unary_rpc_method_handler(
+          servicer.GetIndividual,
+          request_deserializer=GetIndividualRequest.FromString,
+          response_serializer=ga4gh_dot_bio__metadata__pb2.Individual.SerializeToString,
+      ),
+      'GetBioSample': grpc.unary_unary_rpc_method_handler(
+          servicer.GetBioSample,
+          request_deserializer=GetBioSampleRequest.FromString,
+          response_serializer=ga4gh_dot_bio__metadata__pb2.BioSample.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'ga4gh.BioMetadataService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaBioMetadataServiceServicer(object):
   def SearchIndividuals(self, request, context):
@@ -360,8 +456,9 @@ class BetaBioMetadataServiceServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaBioMetadataServiceStub(object):
-  def SearchIndividuals(self, request, timeout):
+  def SearchIndividuals(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of Individuals accessible through the API.
     `POST /individuals/search` must accept a JSON version of
     `SearchIndividualsRequest` as the post body and will return a JSON version
@@ -369,46 +466,39 @@ class BetaBioMetadataServiceStub(object):
     """
     raise NotImplementedError()
   SearchIndividuals.future = None
-  def SearchBioSamples(self, request, timeout):
+  def SearchBioSamples(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """`POST /biosamples/search` must accept a JSON version of
     `SearchBioSamplesRequest` as the post body and will return a JSON version
     of `SearchBioSamplesResponse`.
     """
     raise NotImplementedError()
   SearchBioSamples.future = None
-  def GetIndividual(self, request, timeout):
+  def GetIndividual(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets an `Individual` by ID.
     `GET /individuals/{id}` will return a JSON version of `Individual`.
     """
     raise NotImplementedError()
   GetIndividual.future = None
-  def GetBioSample(self, request, timeout):
+  def GetBioSample(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `BioSample` by ID.
     `GET /biosamples/{id}` will return a JSON version of `BioSample`.
     """
     raise NotImplementedError()
   GetBioSample.future = None
 
+
 def beta_create_BioMetadataService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_pb2
   request_deserializers = {
-    ('ga4gh.BioMetadataService', 'GetBioSample'): ga4gh.bio_metadata_service_pb2.GetBioSampleRequest.FromString,
-    ('ga4gh.BioMetadataService', 'GetIndividual'): ga4gh.bio_metadata_service_pb2.GetIndividualRequest.FromString,
-    ('ga4gh.BioMetadataService', 'SearchBioSamples'): ga4gh.bio_metadata_service_pb2.SearchBioSamplesRequest.FromString,
-    ('ga4gh.BioMetadataService', 'SearchIndividuals'): ga4gh.bio_metadata_service_pb2.SearchIndividualsRequest.FromString,
+    ('ga4gh.BioMetadataService', 'GetBioSample'): GetBioSampleRequest.FromString,
+    ('ga4gh.BioMetadataService', 'GetIndividual'): GetIndividualRequest.FromString,
+    ('ga4gh.BioMetadataService', 'SearchBioSamples'): SearchBioSamplesRequest.FromString,
+    ('ga4gh.BioMetadataService', 'SearchIndividuals'): SearchIndividualsRequest.FromString,
   }
   response_serializers = {
-    ('ga4gh.BioMetadataService', 'GetBioSample'): ga4gh.bio_metadata_pb2.BioSample.SerializeToString,
-    ('ga4gh.BioMetadataService', 'GetIndividual'): ga4gh.bio_metadata_pb2.Individual.SerializeToString,
-    ('ga4gh.BioMetadataService', 'SearchBioSamples'): ga4gh.bio_metadata_service_pb2.SearchBioSamplesResponse.SerializeToString,
-    ('ga4gh.BioMetadataService', 'SearchIndividuals'): ga4gh.bio_metadata_service_pb2.SearchIndividualsResponse.SerializeToString,
+    ('ga4gh.BioMetadataService', 'GetBioSample'): ga4gh_dot_bio__metadata__pb2.BioSample.SerializeToString,
+    ('ga4gh.BioMetadataService', 'GetIndividual'): ga4gh_dot_bio__metadata__pb2.Individual.SerializeToString,
+    ('ga4gh.BioMetadataService', 'SearchBioSamples'): SearchBioSamplesResponse.SerializeToString,
+    ('ga4gh.BioMetadataService', 'SearchIndividuals'): SearchIndividualsResponse.SerializeToString,
   }
   method_implementations = {
     ('ga4gh.BioMetadataService', 'GetBioSample'): face_utilities.unary_unary_inline(servicer.GetBioSample),
@@ -419,26 +509,19 @@ def beta_create_BioMetadataService_server(servicer, pool=None, pool_size=None, d
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_BioMetadataService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_pb2
-  import ga4gh.bio_metadata_service_pb2
-  import ga4gh.bio_metadata_pb2
   request_serializers = {
-    ('ga4gh.BioMetadataService', 'GetBioSample'): ga4gh.bio_metadata_service_pb2.GetBioSampleRequest.SerializeToString,
-    ('ga4gh.BioMetadataService', 'GetIndividual'): ga4gh.bio_metadata_service_pb2.GetIndividualRequest.SerializeToString,
-    ('ga4gh.BioMetadataService', 'SearchBioSamples'): ga4gh.bio_metadata_service_pb2.SearchBioSamplesRequest.SerializeToString,
-    ('ga4gh.BioMetadataService', 'SearchIndividuals'): ga4gh.bio_metadata_service_pb2.SearchIndividualsRequest.SerializeToString,
+    ('ga4gh.BioMetadataService', 'GetBioSample'): GetBioSampleRequest.SerializeToString,
+    ('ga4gh.BioMetadataService', 'GetIndividual'): GetIndividualRequest.SerializeToString,
+    ('ga4gh.BioMetadataService', 'SearchBioSamples'): SearchBioSamplesRequest.SerializeToString,
+    ('ga4gh.BioMetadataService', 'SearchIndividuals'): SearchIndividualsRequest.SerializeToString,
   }
   response_deserializers = {
-    ('ga4gh.BioMetadataService', 'GetBioSample'): ga4gh.bio_metadata_pb2.BioSample.FromString,
-    ('ga4gh.BioMetadataService', 'GetIndividual'): ga4gh.bio_metadata_pb2.Individual.FromString,
-    ('ga4gh.BioMetadataService', 'SearchBioSamples'): ga4gh.bio_metadata_service_pb2.SearchBioSamplesResponse.FromString,
-    ('ga4gh.BioMetadataService', 'SearchIndividuals'): ga4gh.bio_metadata_service_pb2.SearchIndividualsResponse.FromString,
+    ('ga4gh.BioMetadataService', 'GetBioSample'): ga4gh_dot_bio__metadata__pb2.BioSample.FromString,
+    ('ga4gh.BioMetadataService', 'GetIndividual'): ga4gh_dot_bio__metadata__pb2.Individual.FromString,
+    ('ga4gh.BioMetadataService', 'SearchBioSamples'): SearchBioSamplesResponse.FromString,
+    ('ga4gh.BioMetadataService', 'SearchIndividuals'): SearchIndividualsResponse.FromString,
   }
   cardinalities = {
     'GetBioSample': cardinality.Cardinality.UNARY_UNARY,

@@ -303,12 +303,112 @@ SearchReadsResponse = _reflection.GeneratedProtocolMessageType('SearchReadsRespo
 _sym_db.RegisterMessage(SearchReadsResponse)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class ReadServiceStub(object):
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.SearchReadGroupSets = channel.unary_unary(
+        '/ga4gh.ReadService/SearchReadGroupSets',
+        request_serializer=SearchReadGroupSetsRequest.SerializeToString,
+        response_deserializer=SearchReadGroupSetsResponse.FromString,
+        )
+    self.GetReadGroupSet = channel.unary_unary(
+        '/ga4gh.ReadService/GetReadGroupSet',
+        request_serializer=GetReadGroupSetRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_reads__pb2.ReadGroupSet.FromString,
+        )
+    self.SearchReads = channel.unary_unary(
+        '/ga4gh.ReadService/SearchReads',
+        request_serializer=SearchReadsRequest.SerializeToString,
+        response_deserializer=SearchReadsResponse.FromString,
+        )
+
+
+class ReadServiceServicer(object):
+
+  def SearchReadGroupSets(self, request, context):
+    """Gets a list of `ReadGroupSet` matching the search criteria.
+
+    `POST /readgroupsets/search` must accept a JSON version of
+    `SearchReadGroupSetsRequest` as the post body and will return a JSON
+    version of `SearchReadGroupSetsResponse`. Only readgroups that
+    match an optionally supplied bioSampleId will be included in the
+    response.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetReadGroupSet(self, request, context):
+    """Gets a `ReadGroupSet` by ID.
+
+    `GET /readgroupsets/{read_group_set_id}` will return a JSON version of
+    `ReadGroupSet`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SearchReads(self, request, context):
+    """Gets a list of `ReadAlignment`s for one or more `ReadGroup`s.
+
+    `searchReads` operates over a genomic coordinate space of reference sequence
+    and position defined by the `Reference`s to which the requested `ReadGroup`s are
+    aligned.
+
+    If a target positional range is specified, search returns all reads whose
+    alignment to the reference genome *overlap* the range. A query which specifies
+    only read group IDs yields all reads in those read groups, including unmapped
+    reads.
+
+    All reads returned (including reads on subsequent pages) are ordered by genomic
+    coordinate (by reference sequence, then position). Reads with equivalent genomic
+    coordinates are returned in an unspecified order. This order must be consistent
+    for a given repository, such that two queries for the same content (regardless
+    of page size) yield reads in the same order across their respective streams of
+    paginated responses.
+
+    `POST /reads/search` must accept a JSON version of `SearchReadsRequest` as
+    the post body and will return a JSON version of `SearchReadsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_ReadServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'SearchReadGroupSets': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchReadGroupSets,
+          request_deserializer=SearchReadGroupSetsRequest.FromString,
+          response_serializer=SearchReadGroupSetsResponse.SerializeToString,
+      ),
+      'GetReadGroupSet': grpc.unary_unary_rpc_method_handler(
+          servicer.GetReadGroupSet,
+          request_deserializer=GetReadGroupSetRequest.FromString,
+          response_serializer=ga4gh_dot_reads__pb2.ReadGroupSet.SerializeToString,
+      ),
+      'SearchReads': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchReads,
+          request_deserializer=SearchReadsRequest.FromString,
+          response_serializer=SearchReadsResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'ga4gh.ReadService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaReadServiceServicer(object):
   def SearchReadGroupSets(self, request, context):
@@ -352,8 +452,9 @@ class BetaReadServiceServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaReadServiceStub(object):
-  def SearchReadGroupSets(self, request, timeout):
+  def SearchReadGroupSets(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `ReadGroupSet` matching the search criteria.
 
     `POST /readgroupsets/search` must accept a JSON version of
@@ -364,7 +465,7 @@ class BetaReadServiceStub(object):
     """
     raise NotImplementedError()
   SearchReadGroupSets.future = None
-  def GetReadGroupSet(self, request, timeout):
+  def GetReadGroupSet(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `ReadGroupSet` by ID.
 
     `GET /readgroupsets/{read_group_set_id}` will return a JSON version of
@@ -372,7 +473,7 @@ class BetaReadServiceStub(object):
     """
     raise NotImplementedError()
   GetReadGroupSet.future = None
-  def SearchReads(self, request, timeout):
+  def SearchReads(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `ReadAlignment`s for one or more `ReadGroup`s.
 
     `searchReads` operates over a genomic coordinate space of reference sequence
@@ -397,22 +498,17 @@ class BetaReadServiceStub(object):
     raise NotImplementedError()
   SearchReads.future = None
 
+
 def beta_create_ReadService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import ga4gh.read_service_pb2
-  import ga4gh.read_service_pb2
-  import ga4gh.read_service_pb2
-  import ga4gh.reads_pb2
-  import ga4gh.read_service_pb2
-  import ga4gh.read_service_pb2
   request_deserializers = {
-    ('ga4gh.ReadService', 'GetReadGroupSet'): ga4gh.read_service_pb2.GetReadGroupSetRequest.FromString,
-    ('ga4gh.ReadService', 'SearchReadGroupSets'): ga4gh.read_service_pb2.SearchReadGroupSetsRequest.FromString,
-    ('ga4gh.ReadService', 'SearchReads'): ga4gh.read_service_pb2.SearchReadsRequest.FromString,
+    ('ga4gh.ReadService', 'GetReadGroupSet'): GetReadGroupSetRequest.FromString,
+    ('ga4gh.ReadService', 'SearchReadGroupSets'): SearchReadGroupSetsRequest.FromString,
+    ('ga4gh.ReadService', 'SearchReads'): SearchReadsRequest.FromString,
   }
   response_serializers = {
-    ('ga4gh.ReadService', 'GetReadGroupSet'): ga4gh.reads_pb2.ReadGroupSet.SerializeToString,
-    ('ga4gh.ReadService', 'SearchReadGroupSets'): ga4gh.read_service_pb2.SearchReadGroupSetsResponse.SerializeToString,
-    ('ga4gh.ReadService', 'SearchReads'): ga4gh.read_service_pb2.SearchReadsResponse.SerializeToString,
+    ('ga4gh.ReadService', 'GetReadGroupSet'): ga4gh_dot_reads__pb2.ReadGroupSet.SerializeToString,
+    ('ga4gh.ReadService', 'SearchReadGroupSets'): SearchReadGroupSetsResponse.SerializeToString,
+    ('ga4gh.ReadService', 'SearchReads'): SearchReadsResponse.SerializeToString,
   }
   method_implementations = {
     ('ga4gh.ReadService', 'GetReadGroupSet'): face_utilities.unary_unary_inline(servicer.GetReadGroupSet),
@@ -422,22 +518,17 @@ def beta_create_ReadService_server(servicer, pool=None, pool_size=None, default_
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_ReadService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import ga4gh.read_service_pb2
-  import ga4gh.read_service_pb2
-  import ga4gh.read_service_pb2
-  import ga4gh.reads_pb2
-  import ga4gh.read_service_pb2
-  import ga4gh.read_service_pb2
   request_serializers = {
-    ('ga4gh.ReadService', 'GetReadGroupSet'): ga4gh.read_service_pb2.GetReadGroupSetRequest.SerializeToString,
-    ('ga4gh.ReadService', 'SearchReadGroupSets'): ga4gh.read_service_pb2.SearchReadGroupSetsRequest.SerializeToString,
-    ('ga4gh.ReadService', 'SearchReads'): ga4gh.read_service_pb2.SearchReadsRequest.SerializeToString,
+    ('ga4gh.ReadService', 'GetReadGroupSet'): GetReadGroupSetRequest.SerializeToString,
+    ('ga4gh.ReadService', 'SearchReadGroupSets'): SearchReadGroupSetsRequest.SerializeToString,
+    ('ga4gh.ReadService', 'SearchReads'): SearchReadsRequest.SerializeToString,
   }
   response_deserializers = {
-    ('ga4gh.ReadService', 'GetReadGroupSet'): ga4gh.reads_pb2.ReadGroupSet.FromString,
-    ('ga4gh.ReadService', 'SearchReadGroupSets'): ga4gh.read_service_pb2.SearchReadGroupSetsResponse.FromString,
-    ('ga4gh.ReadService', 'SearchReads'): ga4gh.read_service_pb2.SearchReadsResponse.FromString,
+    ('ga4gh.ReadService', 'GetReadGroupSet'): ga4gh_dot_reads__pb2.ReadGroupSet.FromString,
+    ('ga4gh.ReadService', 'SearchReadGroupSets'): SearchReadGroupSetsResponse.FromString,
+    ('ga4gh.ReadService', 'SearchReads'): SearchReadsResponse.FromString,
   }
   cardinalities = {
     'GetReadGroupSet': cardinality.Cardinality.UNARY_UNARY,

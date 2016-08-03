@@ -12,7 +12,11 @@ class VariantService(variant_service_pb2.BetaVariantServiceServicer):
     return variant_service_pb2.SearchCallSetsResponse()
 
   def SearchVariants(self, request, context):
-    return variant_service_pb2.SearchVariantsResponse()
+    for idx in range(5):
+      variant = variants_pb2.Variant(
+        id=str(idx)
+      )
+      yield variant
 
   def GetCallSet(self, request, context):
     return variants_pb2.CallSet()

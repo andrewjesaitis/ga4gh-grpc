@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='ga4gh/variant_service.proto',
   package='ga4gh',
   syntax='proto3',
-  serialized_pb=_b('\n\x1bga4gh/variant_service.proto\x12\x05ga4gh\x1a\x14ga4gh/variants.proto\"U\n\x18SearchVariantSetsRequest\x12\x12\n\ndataset_id\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"]\n\x19SearchVariantSetsResponse\x12\'\n\x0cvariant_sets\x18\x01 \x03(\x0b\x32\x11.ga4gh.VariantSet\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\".\n\x14GetVariantSetRequest\x12\x16\n\x0evariant_set_id\x18\x01 \x01(\t\"\xa0\x01\n\x15SearchVariantsRequest\x12\x16\n\x0evariant_set_id\x18\x01 \x01(\t\x12\x14\n\x0c\x63\x61ll_set_ids\x18\x02 \x03(\t\x12\x16\n\x0ereference_name\x18\x03 \x01(\t\x12\r\n\x05start\x18\x04 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x05 \x01(\x03\x12\x11\n\tpage_size\x18\x06 \x01(\x05\x12\x12\n\npage_token\x18\x07 \x01(\t\"S\n\x16SearchVariantsResponse\x12 \n\x08variants\x18\x01 \x03(\x0b\x32\x0e.ga4gh.Variant\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"\'\n\x11GetVariantRequest\x12\x12\n\nvariant_id\x18\x01 \x01(\t\"{\n\x15SearchCallSetsRequest\x12\x16\n\x0evariant_set_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x15\n\rbio_sample_id\x18\x03 \x01(\t\x12\x11\n\tpage_size\x18\x04 \x01(\x05\x12\x12\n\npage_token\x18\x05 \x01(\t\"T\n\x16SearchCallSetsResponse\x12!\n\tcall_sets\x18\x01 \x03(\x0b\x32\x0e.ga4gh.CallSet\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"(\n\x11GetCallSetRequest\x12\x13\n\x0b\x63\x61ll_set_id\x18\x01 \x01(\t2\xb7\x03\n\x0eVariantService\x12V\n\x11SearchVariantSets\x12\x1f.ga4gh.SearchVariantSetsRequest\x1a .ga4gh.SearchVariantSetsResponse\x12?\n\rGetVariantSet\x12\x1b.ga4gh.GetVariantSetRequest\x1a\x11.ga4gh.VariantSet\x12M\n\x0eSearchVariants\x12\x1c.ga4gh.SearchVariantsRequest\x1a\x1d.ga4gh.SearchVariantsResponse\x12\x36\n\nGetVariant\x12\x18.ga4gh.GetVariantRequest\x1a\x0e.ga4gh.Variant\x12M\n\x0eSearchCallSets\x12\x1c.ga4gh.SearchCallSetsRequest\x1a\x1d.ga4gh.SearchCallSetsResponse\x12\x36\n\nGetCallSet\x12\x18.ga4gh.GetCallSetRequest\x1a\x0e.ga4gh.CallSetb\x06proto3')
+  serialized_pb=_b('\n\x1bga4gh/variant_service.proto\x12\x05ga4gh\x1a\x14ga4gh/variants.proto\"U\n\x18SearchVariantSetsRequest\x12\x12\n\ndataset_id\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"]\n\x19SearchVariantSetsResponse\x12\'\n\x0cvariant_sets\x18\x01 \x03(\x0b\x32\x11.ga4gh.VariantSet\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\".\n\x14GetVariantSetRequest\x12\x16\n\x0evariant_set_id\x18\x01 \x01(\t\"\xa0\x01\n\x15SearchVariantsRequest\x12\x16\n\x0evariant_set_id\x18\x01 \x01(\t\x12\x14\n\x0c\x63\x61ll_set_ids\x18\x02 \x03(\t\x12\x16\n\x0ereference_name\x18\x03 \x01(\t\x12\r\n\x05start\x18\x04 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x05 \x01(\x03\x12\x11\n\tpage_size\x18\x06 \x01(\x05\x12\x12\n\npage_token\x18\x07 \x01(\t\"S\n\x16SearchVariantsResponse\x12 \n\x08variants\x18\x01 \x03(\x0b\x32\x0e.ga4gh.Variant\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"\'\n\x11GetVariantRequest\x12\x12\n\nvariant_id\x18\x01 \x01(\t\"{\n\x15SearchCallSetsRequest\x12\x16\n\x0evariant_set_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x15\n\rbio_sample_id\x18\x03 \x01(\t\x12\x11\n\tpage_size\x18\x04 \x01(\x05\x12\x12\n\npage_token\x18\x05 \x01(\t\"T\n\x16SearchCallSetsResponse\x12!\n\tcall_sets\x18\x01 \x03(\x0b\x32\x0e.ga4gh.CallSet\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"(\n\x11GetCallSetRequest\x12\x13\n\x0b\x63\x61ll_set_id\x18\x01 \x01(\t2\xaa\x03\n\x0eVariantService\x12V\n\x11SearchVariantSets\x12\x1f.ga4gh.SearchVariantSetsRequest\x1a .ga4gh.SearchVariantSetsResponse\x12?\n\rGetVariantSet\x12\x1b.ga4gh.GetVariantSetRequest\x1a\x11.ga4gh.VariantSet\x12@\n\x0eSearchVariants\x12\x1c.ga4gh.SearchVariantsRequest\x1a\x0e.ga4gh.Variant0\x01\x12\x36\n\nGetVariant\x12\x18.ga4gh.GetVariantRequest\x1a\x0e.ga4gh.Variant\x12M\n\x0eSearchCallSets\x12\x1c.ga4gh.SearchCallSetsRequest\x1a\x1d.ga4gh.SearchCallSetsResponse\x12\x36\n\nGetCallSet\x12\x18.ga4gh.GetCallSetRequest\x1a\x0e.ga4gh.CallSetb\x06proto3')
   ,
   dependencies=[ga4gh_dot_variants__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -488,12 +488,154 @@ GetCallSetRequest = _reflection.GeneratedProtocolMessageType('GetCallSetRequest'
 _sym_db.RegisterMessage(GetCallSetRequest)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class VariantServiceStub(object):
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.SearchVariantSets = channel.unary_unary(
+        '/ga4gh.VariantService/SearchVariantSets',
+        request_serializer=SearchVariantSetsRequest.SerializeToString,
+        response_deserializer=SearchVariantSetsResponse.FromString,
+        )
+    self.GetVariantSet = channel.unary_unary(
+        '/ga4gh.VariantService/GetVariantSet',
+        request_serializer=GetVariantSetRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_variants__pb2.VariantSet.FromString,
+        )
+    self.SearchVariants = channel.unary_stream(
+        '/ga4gh.VariantService/SearchVariants',
+        request_serializer=SearchVariantsRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_variants__pb2.Variant.FromString,
+        )
+    self.GetVariant = channel.unary_unary(
+        '/ga4gh.VariantService/GetVariant',
+        request_serializer=GetVariantRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_variants__pb2.Variant.FromString,
+        )
+    self.SearchCallSets = channel.unary_unary(
+        '/ga4gh.VariantService/SearchCallSets',
+        request_serializer=SearchCallSetsRequest.SerializeToString,
+        response_deserializer=SearchCallSetsResponse.FromString,
+        )
+    self.GetCallSet = channel.unary_unary(
+        '/ga4gh.VariantService/GetCallSet',
+        request_serializer=GetCallSetRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_variants__pb2.CallSet.FromString,
+        )
+
+
+class VariantServiceServicer(object):
+
+  def SearchVariantSets(self, request, context):
+    """Gets a list of `VariantSet` matching the search criteria.
+
+    `POST /variantsets/search` must accept a JSON version of
+    `SearchVariantSetsRequest` as the post body and will return a JSON version
+    of `SearchVariantSetsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetVariantSet(self, request, context):
+    """Gets a `VariantSet` by ID.
+
+    `GET /variantsets/{variant_set_id}` will return a JSON version of
+    `VariantSet`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SearchVariants(self, request, context):
+    """Gets a list of `Variant` matching the search criteria.
+
+    `POST /variants/search` must accept a JSON version of
+    `SearchVariantsRequest` as the post body and will return a JSON version of
+    `SearchVariantsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetVariant(self, request, context):
+    """Gets a `Variant` by ID.
+
+    `GET /variants/{id}` will return a JSON version of `Variant`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SearchCallSets(self, request, context):
+    """Gets a list of call sets matching the search criteria.
+
+    `POST /callsets/search` must accept a JSON version of
+    `SearchCallSetsRequest` as the post body and will return a JSON version of
+    `SearchCallSetsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetCallSet(self, request, context):
+    """Gets a `CallSet` by ID.
+
+    `GET /callsets/{id}` will return a JSON version of `CallSet`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_VariantServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'SearchVariantSets': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchVariantSets,
+          request_deserializer=SearchVariantSetsRequest.FromString,
+          response_serializer=SearchVariantSetsResponse.SerializeToString,
+      ),
+      'GetVariantSet': grpc.unary_unary_rpc_method_handler(
+          servicer.GetVariantSet,
+          request_deserializer=GetVariantSetRequest.FromString,
+          response_serializer=ga4gh_dot_variants__pb2.VariantSet.SerializeToString,
+      ),
+      'SearchVariants': grpc.unary_stream_rpc_method_handler(
+          servicer.SearchVariants,
+          request_deserializer=SearchVariantsRequest.FromString,
+          response_serializer=ga4gh_dot_variants__pb2.Variant.SerializeToString,
+      ),
+      'GetVariant': grpc.unary_unary_rpc_method_handler(
+          servicer.GetVariant,
+          request_deserializer=GetVariantRequest.FromString,
+          response_serializer=ga4gh_dot_variants__pb2.Variant.SerializeToString,
+      ),
+      'SearchCallSets': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchCallSets,
+          request_deserializer=SearchCallSetsRequest.FromString,
+          response_serializer=SearchCallSetsResponse.SerializeToString,
+      ),
+      'GetCallSet': grpc.unary_unary_rpc_method_handler(
+          servicer.GetCallSet,
+          request_deserializer=GetCallSetRequest.FromString,
+          response_serializer=ga4gh_dot_variants__pb2.CallSet.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'ga4gh.VariantService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaVariantServiceServicer(object):
   def SearchVariantSets(self, request, context):
@@ -540,8 +682,9 @@ class BetaVariantServiceServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaVariantServiceStub(object):
-  def SearchVariantSets(self, request, timeout):
+  def SearchVariantSets(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `VariantSet` matching the search criteria.
 
     `POST /variantsets/search` must accept a JSON version of
@@ -550,7 +693,7 @@ class BetaVariantServiceStub(object):
     """
     raise NotImplementedError()
   SearchVariantSets.future = None
-  def GetVariantSet(self, request, timeout):
+  def GetVariantSet(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `VariantSet` by ID.
 
     `GET /variantsets/{variant_set_id}` will return a JSON version of
@@ -558,7 +701,7 @@ class BetaVariantServiceStub(object):
     """
     raise NotImplementedError()
   GetVariantSet.future = None
-  def SearchVariants(self, request, timeout):
+  def SearchVariants(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `Variant` matching the search criteria.
 
     `POST /variants/search` must accept a JSON version of
@@ -566,15 +709,14 @@ class BetaVariantServiceStub(object):
     `SearchVariantsResponse`.
     """
     raise NotImplementedError()
-  SearchVariants.future = None
-  def GetVariant(self, request, timeout):
+  def GetVariant(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `Variant` by ID.
 
     `GET /variants/{id}` will return a JSON version of `Variant`.
     """
     raise NotImplementedError()
   GetVariant.future = None
-  def SearchCallSets(self, request, timeout):
+  def SearchCallSets(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of call sets matching the search criteria.
 
     `POST /callsets/search` must accept a JSON version of
@@ -583,7 +725,7 @@ class BetaVariantServiceStub(object):
     """
     raise NotImplementedError()
   SearchCallSets.future = None
-  def GetCallSet(self, request, timeout):
+  def GetCallSet(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a `CallSet` by ID.
 
     `GET /callsets/{id}` will return a JSON version of `CallSet`.
@@ -591,34 +733,23 @@ class BetaVariantServiceStub(object):
     raise NotImplementedError()
   GetCallSet.future = None
 
+
 def beta_create_VariantService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variants_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variants_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variants_pb2
   request_deserializers = {
-    ('ga4gh.VariantService', 'GetCallSet'): ga4gh.variant_service_pb2.GetCallSetRequest.FromString,
-    ('ga4gh.VariantService', 'GetVariant'): ga4gh.variant_service_pb2.GetVariantRequest.FromString,
-    ('ga4gh.VariantService', 'GetVariantSet'): ga4gh.variant_service_pb2.GetVariantSetRequest.FromString,
-    ('ga4gh.VariantService', 'SearchCallSets'): ga4gh.variant_service_pb2.SearchCallSetsRequest.FromString,
-    ('ga4gh.VariantService', 'SearchVariantSets'): ga4gh.variant_service_pb2.SearchVariantSetsRequest.FromString,
-    ('ga4gh.VariantService', 'SearchVariants'): ga4gh.variant_service_pb2.SearchVariantsRequest.FromString,
+    ('ga4gh.VariantService', 'GetCallSet'): GetCallSetRequest.FromString,
+    ('ga4gh.VariantService', 'GetVariant'): GetVariantRequest.FromString,
+    ('ga4gh.VariantService', 'GetVariantSet'): GetVariantSetRequest.FromString,
+    ('ga4gh.VariantService', 'SearchCallSets'): SearchCallSetsRequest.FromString,
+    ('ga4gh.VariantService', 'SearchVariantSets'): SearchVariantSetsRequest.FromString,
+    ('ga4gh.VariantService', 'SearchVariants'): SearchVariantsRequest.FromString,
   }
   response_serializers = {
-    ('ga4gh.VariantService', 'GetCallSet'): ga4gh.variants_pb2.CallSet.SerializeToString,
-    ('ga4gh.VariantService', 'GetVariant'): ga4gh.variants_pb2.Variant.SerializeToString,
-    ('ga4gh.VariantService', 'GetVariantSet'): ga4gh.variants_pb2.VariantSet.SerializeToString,
-    ('ga4gh.VariantService', 'SearchCallSets'): ga4gh.variant_service_pb2.SearchCallSetsResponse.SerializeToString,
-    ('ga4gh.VariantService', 'SearchVariantSets'): ga4gh.variant_service_pb2.SearchVariantSetsResponse.SerializeToString,
-    ('ga4gh.VariantService', 'SearchVariants'): ga4gh.variant_service_pb2.SearchVariantsResponse.SerializeToString,
+    ('ga4gh.VariantService', 'GetCallSet'): ga4gh_dot_variants__pb2.CallSet.SerializeToString,
+    ('ga4gh.VariantService', 'GetVariant'): ga4gh_dot_variants__pb2.Variant.SerializeToString,
+    ('ga4gh.VariantService', 'GetVariantSet'): ga4gh_dot_variants__pb2.VariantSet.SerializeToString,
+    ('ga4gh.VariantService', 'SearchCallSets'): SearchCallSetsResponse.SerializeToString,
+    ('ga4gh.VariantService', 'SearchVariantSets'): SearchVariantSetsResponse.SerializeToString,
+    ('ga4gh.VariantService', 'SearchVariants'): ga4gh_dot_variants__pb2.Variant.SerializeToString,
   }
   method_implementations = {
     ('ga4gh.VariantService', 'GetCallSet'): face_utilities.unary_unary_inline(servicer.GetCallSet),
@@ -626,39 +757,28 @@ def beta_create_VariantService_server(servicer, pool=None, pool_size=None, defau
     ('ga4gh.VariantService', 'GetVariantSet'): face_utilities.unary_unary_inline(servicer.GetVariantSet),
     ('ga4gh.VariantService', 'SearchCallSets'): face_utilities.unary_unary_inline(servicer.SearchCallSets),
     ('ga4gh.VariantService', 'SearchVariantSets'): face_utilities.unary_unary_inline(servicer.SearchVariantSets),
-    ('ga4gh.VariantService', 'SearchVariants'): face_utilities.unary_unary_inline(servicer.SearchVariants),
+    ('ga4gh.VariantService', 'SearchVariants'): face_utilities.unary_stream_inline(servicer.SearchVariants),
   }
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_VariantService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variants_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variants_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variant_service_pb2
-  import ga4gh.variants_pb2
   request_serializers = {
-    ('ga4gh.VariantService', 'GetCallSet'): ga4gh.variant_service_pb2.GetCallSetRequest.SerializeToString,
-    ('ga4gh.VariantService', 'GetVariant'): ga4gh.variant_service_pb2.GetVariantRequest.SerializeToString,
-    ('ga4gh.VariantService', 'GetVariantSet'): ga4gh.variant_service_pb2.GetVariantSetRequest.SerializeToString,
-    ('ga4gh.VariantService', 'SearchCallSets'): ga4gh.variant_service_pb2.SearchCallSetsRequest.SerializeToString,
-    ('ga4gh.VariantService', 'SearchVariantSets'): ga4gh.variant_service_pb2.SearchVariantSetsRequest.SerializeToString,
-    ('ga4gh.VariantService', 'SearchVariants'): ga4gh.variant_service_pb2.SearchVariantsRequest.SerializeToString,
+    ('ga4gh.VariantService', 'GetCallSet'): GetCallSetRequest.SerializeToString,
+    ('ga4gh.VariantService', 'GetVariant'): GetVariantRequest.SerializeToString,
+    ('ga4gh.VariantService', 'GetVariantSet'): GetVariantSetRequest.SerializeToString,
+    ('ga4gh.VariantService', 'SearchCallSets'): SearchCallSetsRequest.SerializeToString,
+    ('ga4gh.VariantService', 'SearchVariantSets'): SearchVariantSetsRequest.SerializeToString,
+    ('ga4gh.VariantService', 'SearchVariants'): SearchVariantsRequest.SerializeToString,
   }
   response_deserializers = {
-    ('ga4gh.VariantService', 'GetCallSet'): ga4gh.variants_pb2.CallSet.FromString,
-    ('ga4gh.VariantService', 'GetVariant'): ga4gh.variants_pb2.Variant.FromString,
-    ('ga4gh.VariantService', 'GetVariantSet'): ga4gh.variants_pb2.VariantSet.FromString,
-    ('ga4gh.VariantService', 'SearchCallSets'): ga4gh.variant_service_pb2.SearchCallSetsResponse.FromString,
-    ('ga4gh.VariantService', 'SearchVariantSets'): ga4gh.variant_service_pb2.SearchVariantSetsResponse.FromString,
-    ('ga4gh.VariantService', 'SearchVariants'): ga4gh.variant_service_pb2.SearchVariantsResponse.FromString,
+    ('ga4gh.VariantService', 'GetCallSet'): ga4gh_dot_variants__pb2.CallSet.FromString,
+    ('ga4gh.VariantService', 'GetVariant'): ga4gh_dot_variants__pb2.Variant.FromString,
+    ('ga4gh.VariantService', 'GetVariantSet'): ga4gh_dot_variants__pb2.VariantSet.FromString,
+    ('ga4gh.VariantService', 'SearchCallSets'): SearchCallSetsResponse.FromString,
+    ('ga4gh.VariantService', 'SearchVariantSets'): SearchVariantSetsResponse.FromString,
+    ('ga4gh.VariantService', 'SearchVariants'): ga4gh_dot_variants__pb2.Variant.FromString,
   }
   cardinalities = {
     'GetCallSet': cardinality.Cardinality.UNARY_UNARY,
@@ -666,7 +786,7 @@ def beta_create_VariantService_stub(channel, host=None, metadata_transformer=Non
     'GetVariantSet': cardinality.Cardinality.UNARY_UNARY,
     'SearchCallSets': cardinality.Cardinality.UNARY_UNARY,
     'SearchVariantSets': cardinality.Cardinality.UNARY_UNARY,
-    'SearchVariants': cardinality.Cardinality.UNARY_UNARY,
+    'SearchVariants': cardinality.Cardinality.UNARY_STREAM,
   }
   stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
   return beta_implementations.dynamic_stub(channel, 'ga4gh.VariantService', cardinalities, options=stub_options)

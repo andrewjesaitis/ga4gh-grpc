@@ -305,12 +305,107 @@ GetVariantAnnotationSetRequest = _reflection.GeneratedProtocolMessageType('GetVa
 _sym_db.RegisterMessage(GetVariantAnnotationSetRequest)
 
 
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class AlleleAnnotationServiceStub(object):
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.SearchVariantAnnotations = channel.unary_unary(
+        '/ga4gh.AlleleAnnotationService/SearchVariantAnnotations',
+        request_serializer=SearchVariantAnnotationsRequest.SerializeToString,
+        response_deserializer=SearchVariantAnnotationsResponse.FromString,
+        )
+    self.SearchVariantAnnotationSets = channel.unary_unary(
+        '/ga4gh.AlleleAnnotationService/SearchVariantAnnotationSets',
+        request_serializer=SearchVariantAnnotationSetsRequest.SerializeToString,
+        response_deserializer=SearchVariantAnnotationSetsResponse.FromString,
+        )
+    self.GetVariantAnnotationSet = channel.unary_unary(
+        '/ga4gh.AlleleAnnotationService/GetVariantAnnotationSet',
+        request_serializer=GetVariantAnnotationSetRequest.SerializeToString,
+        response_deserializer=ga4gh_dot_allele__annotations__pb2.VariantAnnotationSet.FromString,
+        )
+
+
+class AlleleAnnotationServiceServicer(object):
+
+  def SearchVariantAnnotations(self, request, context):
+    """Gets a list of `VariantAnnotation`s matching the search criteria.
+
+    This allows the mining of allele-specific annotations on a VariantSet by
+    either a region or by a set of genomic features. Where a region is supplied
+    annotation of all alleles vs all features in the region is returned. Where
+    a set of features is supplied, only annotations against these features
+    (matching on featuretype and id) are returned and other overlapping
+    features are ignored.
+
+    variantannotationsets/search returns information on the input to the
+    annotation. This will be a VariantSet and the reference data and software
+    versions used in calculating the annotation. It is essential this
+    information is exhaustive.
+
+    `POST /variantannotations/search` must accept a JSON version of
+    `SearchVariantAnnotationsRequest` as the post body and will return a JSON
+    version of `SearchVariantAnnotationsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SearchVariantAnnotationSets(self, request, context):
+    """Returns a list of available variant annotation sets.
+
+    `POST /variantannotationsets/search` must accept a JSON version of
+    `SearchVariantAnnotationSetsRequest` as the post body and will return a
+    JSON version of `SearchVariantAnnotationSetsResponse`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetVariantAnnotationSet(self, request, context):
+    """Gets an `VariantAnnotationSet` by ID.
+
+    `GET /variantannotationsets/{variant_annotation_set_id}` will return a JSON
+    version of `VariantAnnotationSet`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_AlleleAnnotationServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'SearchVariantAnnotations': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchVariantAnnotations,
+          request_deserializer=SearchVariantAnnotationsRequest.FromString,
+          response_serializer=SearchVariantAnnotationsResponse.SerializeToString,
+      ),
+      'SearchVariantAnnotationSets': grpc.unary_unary_rpc_method_handler(
+          servicer.SearchVariantAnnotationSets,
+          request_deserializer=SearchVariantAnnotationSetsRequest.FromString,
+          response_serializer=SearchVariantAnnotationSetsResponse.SerializeToString,
+      ),
+      'GetVariantAnnotationSet': grpc.unary_unary_rpc_method_handler(
+          servicer.GetVariantAnnotationSet,
+          request_deserializer=GetVariantAnnotationSetRequest.FromString,
+          response_serializer=ga4gh_dot_allele__annotations__pb2.VariantAnnotationSet.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'ga4gh.AlleleAnnotationService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaAlleleAnnotationServiceServicer(object):
   def SearchVariantAnnotations(self, request, context):
@@ -349,8 +444,9 @@ class BetaAlleleAnnotationServiceServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaAlleleAnnotationServiceStub(object):
-  def SearchVariantAnnotations(self, request, timeout):
+  def SearchVariantAnnotations(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a list of `VariantAnnotation`s matching the search criteria.
 
     This allows the mining of allele-specific annotations on a VariantSet by
@@ -371,7 +467,7 @@ class BetaAlleleAnnotationServiceStub(object):
     """
     raise NotImplementedError()
   SearchVariantAnnotations.future = None
-  def SearchVariantAnnotationSets(self, request, timeout):
+  def SearchVariantAnnotationSets(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Returns a list of available variant annotation sets.
 
     `POST /variantannotationsets/search` must accept a JSON version of
@@ -380,7 +476,7 @@ class BetaAlleleAnnotationServiceStub(object):
     """
     raise NotImplementedError()
   SearchVariantAnnotationSets.future = None
-  def GetVariantAnnotationSet(self, request, timeout):
+  def GetVariantAnnotationSet(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets an `VariantAnnotationSet` by ID.
 
     `GET /variantannotationsets/{variant_annotation_set_id}` will return a JSON
@@ -389,22 +485,17 @@ class BetaAlleleAnnotationServiceStub(object):
     raise NotImplementedError()
   GetVariantAnnotationSet.future = None
 
+
 def beta_create_AlleleAnnotationService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotations_pb2
   request_deserializers = {
-    ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): ga4gh.allele_annotation_service_pb2.GetVariantAnnotationSetRequest.FromString,
-    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotationSets'): ga4gh.allele_annotation_service_pb2.SearchVariantAnnotationSetsRequest.FromString,
-    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotations'): ga4gh.allele_annotation_service_pb2.SearchVariantAnnotationsRequest.FromString,
+    ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): GetVariantAnnotationSetRequest.FromString,
+    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotationSets'): SearchVariantAnnotationSetsRequest.FromString,
+    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotations'): SearchVariantAnnotationsRequest.FromString,
   }
   response_serializers = {
-    ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): ga4gh.allele_annotations_pb2.VariantAnnotationSet.SerializeToString,
-    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotationSets'): ga4gh.allele_annotation_service_pb2.SearchVariantAnnotationSetsResponse.SerializeToString,
-    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotations'): ga4gh.allele_annotation_service_pb2.SearchVariantAnnotationsResponse.SerializeToString,
+    ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): ga4gh_dot_allele__annotations__pb2.VariantAnnotationSet.SerializeToString,
+    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotationSets'): SearchVariantAnnotationSetsResponse.SerializeToString,
+    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotations'): SearchVariantAnnotationsResponse.SerializeToString,
   }
   method_implementations = {
     ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): face_utilities.unary_unary_inline(servicer.GetVariantAnnotationSet),
@@ -414,22 +505,17 @@ def beta_create_AlleleAnnotationService_server(servicer, pool=None, pool_size=No
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_AlleleAnnotationService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotation_service_pb2
-  import ga4gh.allele_annotations_pb2
   request_serializers = {
-    ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): ga4gh.allele_annotation_service_pb2.GetVariantAnnotationSetRequest.SerializeToString,
-    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotationSets'): ga4gh.allele_annotation_service_pb2.SearchVariantAnnotationSetsRequest.SerializeToString,
-    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotations'): ga4gh.allele_annotation_service_pb2.SearchVariantAnnotationsRequest.SerializeToString,
+    ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): GetVariantAnnotationSetRequest.SerializeToString,
+    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotationSets'): SearchVariantAnnotationSetsRequest.SerializeToString,
+    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotations'): SearchVariantAnnotationsRequest.SerializeToString,
   }
   response_deserializers = {
-    ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): ga4gh.allele_annotations_pb2.VariantAnnotationSet.FromString,
-    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotationSets'): ga4gh.allele_annotation_service_pb2.SearchVariantAnnotationSetsResponse.FromString,
-    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotations'): ga4gh.allele_annotation_service_pb2.SearchVariantAnnotationsResponse.FromString,
+    ('ga4gh.AlleleAnnotationService', 'GetVariantAnnotationSet'): ga4gh_dot_allele__annotations__pb2.VariantAnnotationSet.FromString,
+    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotationSets'): SearchVariantAnnotationSetsResponse.FromString,
+    ('ga4gh.AlleleAnnotationService', 'SearchVariantAnnotations'): SearchVariantAnnotationsResponse.FromString,
   }
   cardinalities = {
     'GetVariantAnnotationSet': cardinality.Cardinality.UNARY_UNARY,
