@@ -40,9 +40,9 @@ def convertVariant(record, callSetIds):
         # by GAVariant.
     for key, value in record.info.iteritems():
         if value is not None:
-            if isinstance(value, str):
+            if isinstance(value, str): 
                 value = value.split(',')
-                variant.info[key].values.extend(_encodeValue(value))
+            variant.info[key].values.extend(_encodeValue(value))
     # for callSetId in callSetIds:
     #    callSet = self.getCallSet(callSetId)
     #    pysamCall = record.samples[str(callSet.getSampleName())]
