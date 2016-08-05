@@ -49,4 +49,5 @@ def convertVariant(record, callSetIds):
     #    variant.calls.add().CopyFrom(
     #        self._convertGaCall(callSet, pysamCall))
     variant.id = generate_id(record) # stub in id
+    variant.variant_set_id = md5.new("1kgChr1").hexdigest()
     return variant

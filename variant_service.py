@@ -17,7 +17,7 @@ class VariantService(variant_service_pb2.BetaVariantServiceServicer):
     for idx, rec in enumerate(datamodel.variant.getPysamVariants(
         request.reference_name, '1', request.start, request.end)):
       variant = datamodel.variant.convertVariant(rec, None)
-      if idx > 5: break
+      #if idx > 5: break
       yield variant
 
   def GetCallSet(self, request, context):

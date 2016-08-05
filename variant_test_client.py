@@ -20,8 +20,9 @@ def chr1_variants(channel):
   )
 
   print("Searching for Variants on Chromosome 1...")
-  for variant in stub.SearchVariants(req, _TIMEOUT_SECONDS):
-    print(json_format.MessageToJson(variant))
+  for variant in stub.SearchVariants(req, None):
+    print(variant)
+    # print(json_format.MessageToJson(variant))
 
 
 def run():
